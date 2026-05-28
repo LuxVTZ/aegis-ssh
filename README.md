@@ -1,81 +1,125 @@
 <div align="center">
-  <h1>🛡️ Aegis SSH Platform</h1>
-  <p><b>Enterprise-grade MCP Server for SSH Fleet Orchestration</b></p>
   
-  [![Go Version](https://img.shields.io/github/go-mod/go-version/LuxVTZ/aegis-ssh)](https://golang.org)
-  [![License](https://img.shields.io/github/license/LuxVTZ/aegis-ssh)](https://github.com/LuxVTZ/aegis-ssh/blob/main/LICENSE)
-  [![GitHub Release](https://img.shields.io/github/v/release/LuxVTZ/aegis-ssh)](https://github.com/LuxVTZ/aegis-ssh/releases)
-  [![NPM Version](https://img.shields.io/npm/v/aegis-ssh-mcp)](https://www.npmjs.com/package/aegis-ssh-mcp)
+  # 🛡️ Aegis SSH Platform
+  
+  **Transform your AI Assistant into an Enterprise DevOps Engineer.**  
+  *A lightning-fast, zero-dependency MCP (Model Context Protocol) Server for secure SSH fleet orchestration, written in Go.*
+
+  <br />
+
+  [![Go Report Card](https://goreportcard.com/badge/github.com/LuxVTZ/aegis-ssh)](https://goreportcard.com/report/github.com/LuxVTZ/aegis-ssh)
+  [![License](https://img.shields.io/github/license/LuxVTZ/aegis-ssh?color=blue&style=flat-square)](https://github.com/LuxVTZ/aegis-ssh/blob/main/LICENSE)
+  [![Release](https://img.shields.io/github/v/release/LuxVTZ/aegis-ssh?style=flat-square)](https://github.com/LuxVTZ/aegis-ssh/releases)
+  [![NPM](https://img.shields.io/npm/v/aegis-ssh-mcp?color=CB3837&style=flat-square&logo=npm)](https://www.npmjs.com/package/aegis-ssh-mcp)
+
+  <br />
+
+  [Installation](#-quick-start) •
+  [Key Features](#-key-features) •
+  [Architecture](#-architecture) •
+  [Dashboard](#-web-dashboard) •
+  [Security](#-security)
+
 </div>
 
+---
+
+## ⚡ Why Aegis?
+Most MCP servers are clunky Python or Node.js scripts requiring massive dependency trees, virtual environments, and constant troubleshooting. 
+
+**Aegis is different.** It’s compiled into a single, high-performance binary. No `pip`, no `node_modules`. With built-in support for **Reverse Tunneling**, **Playbook Execution**, and a stunning **Linear-style Web Dashboard**, Aegis represents the ultimate bridge between Large Language Models and your raw infrastructure.
+
+---
+
+## 🔥 Key Features
+
+| Feature | Description |
+| :--- | :--- |
+| 🚀 **Zero-Install (NPM Wrapper)** | Install globally in 2 seconds via `npx aegis-ssh-mcp setup`. |
+| 🌐 **Linear-style Dashboard** | Embedded GUI to monitor servers, active tunnels, and audit logs. |
+| 🛡️ **Enterprise Security** | Strict Regex Whitelisting/Blacklisting prevents AI hallucinations from running destructive commands. |
+| 📜 **AI Playbook Engine** | The AI generates declarative YAML playbooks to configure dozens of servers concurrently. |
+| 🚇 **Reverse Tunneling** | Expose local development servers to the public internet securely via SSH (Ngrok alternative). |
+| 🐳 **Native Docker Integration** | Native JSON-based Docker inspection tools designed specifically for AI parsing. |
+
+---
+
+## 🚀 Quick Start
+
+Aegis features an interactive CLI wizard that automatically configures your AI agents (Claude Desktop, Cursor).
+
+```bash
+# 1. Run the interactive installer wizard
+npx -y aegis-ssh-mcp setup
+
+# 2. Restart your AI Client (Claude/Cursor)
+```
+*The wizard will automatically locate your config files, inject the MCP server, and generate a `.aegis_skills.md` file with optimal system prompts for your AI.*
+
+<details>
+<summary><b>🛠️ Manual Installation (Advanced)</b></summary>
 <br>
 
-Aegis is an ultra-fast, zero-dependency MCP (Model Context Protocol) Server written in Go. It transforms any AI assistant (like Claude, Cursor, Windsurf) into a powerful DevOps engineer capable of securely orchestrating fleets of VPS servers via SSH.
+**1. Download the Binary**  
+Download the pre-compiled binary for your OS from the [Releases page](https://github.com/LuxVTZ/aegis-ssh/releases) and place it in your PATH.
 
-## 🌟 Why Aegis? (Aegis vs Python/Node MCPs)
-Unlike typical Python (`uvx`) or NodeJS MCP servers that require environments, dependencies, and complex setups, **Aegis is a single, lightning-fast binary**.
-- **No Dependencies:** Just download the binary and run it. No `pip`, `node_modules`, or `uvx` required.
-- **Web Dashboard:** Type `aegis-ssh web` to launch a stunning Linear-style UI locally to monitor your servers and audit logs.
-- **Mass Execution:** Powered by Go Goroutines, Aegis executes commands on dozens of servers concurrently.
-- **Auto-Remediation:** Background daemon monitors your servers' CPU Load and dynamically alerts the AI if intervention is needed.
-- **Reverse Tunneling:** Instantly expose local web servers to the public internet via your VPS using the `tunnel_expose` MCP tool.
-- **Playbook Engine:** Run declarative YAML manifests to setup environments idempotently.
-
----
-
-## 🚀 Installation
-
-### Option 1: Direct Download (Recommended)
-Download the pre-compiled binary for your OS (Windows, macOS, Linux) from the [GitHub Releases](https://github.com/LuxVTZ/aegis-ssh/releases) page.
-Move it to a directory in your PATH.
-
-### Option 2: Go Install
-If you have Go 1.21+ installed on your machine:
-```bash
-go install github.com/LuxVTZ/aegis-ssh/cmd/aegis-ssh@latest
-```
-
----
-
-## 🔌 Connecting to AI Clients (MCP Setup)
-
-We built an interactive wizard to automatically wire up Aegis to your favorite AI clients (Claude Desktop, Cursor). You don't even need to touch JSON files!
-
-Just run the following command in your terminal:
-```bash
-npx -y aegis-ssh-mcp setup
-```
-**What this does:**
-1. Prompts you to select your AI agents (Claude, Cursor).
-2. Automatically locates and updates their configuration files to run the Aegis Zero-Install server.
-3. Generates an `.aegis_skills.md` file in your directory with recommended system prompts for your AI.
-
-If you prefer manual installation, use this snippet in your MCP config:
+**2. Configure Claude Desktop**  
+Add the following to your `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
     "aegis-ssh": {
-      "command": "npx",
-      "args": ["-y", "aegis-ssh-mcp", "server"]
+      "command": "aegis-ssh",
+      "args": ["server"]
     }
   }
 }
 ```
+</details>
 
 ---
 
-## 💻 CLI Usage & Control Panel
+## 🖥️ Web Dashboard
 
-Aegis isn't just an MCP server, it's a full developer tool.
+Aegis isn't just an invisible backend protocol. It comes with a beautiful, baked-in Web UI to give you complete visibility over what the AI is doing.
 
 ```bash
-# List all your servers (merged from ~/.ssh/config and ~/.sshmcp/machines.json)
-aegis-ssh list
-
-# Launch the Linear-style Web Dashboard on http://localhost:8080
 aegis-ssh web --port 8080
 ```
+*Navigate to `http://localhost:8080` to view real-time audit logs, server statuses, and active tunnels in a sleek, dark-mode interface.*
 
-## 🔒 Security & Audit
-- Aegis supports strict Regex **Whitelisting** and **Blacklisting**.
-- **SQLite Audit DB:** Every single command the AI executes is logged locally into `~/.sshmcp/audit.db`. You can view these logs directly in the Web Dashboard.
+---
+
+## 🏗 Architecture
+
+```mermaid
+graph TD
+    AI[AI Assistant <br/> Claude/Cursor] <-->|JSON-RPC via stdio| NPM[NPM Wrapper <br/> npx aegis-ssh-mcp]
+    NPM <-->|Spawns & Proxies| Core[Aegis Go Binary]
+    
+    subgraph Aegis SSH Platform
+        Core --> Tools[MCP Tools]
+        Core --> DB[(SQLite Audit Log)]
+        Core --> Web[Embedded Web Dashboard]
+    end
+    
+    Tools -->|SSH / SFTP / Tunnels| Fleet[VPS Server Fleet]
+```
+
+---
+
+## 🛡️ Security
+
+When granting an AI access to your servers, security is paramount.
+1. **Audit Logs:** Every command executed by the AI is logged into a local SQLite database (`~/.sshmcp/audit.db`), viewable via the Dashboard.
+2. **Execution Policies:** Configure strict Regex rules to block dangerous commands (e.g., `rm -rf /`).
+3. **Idempotency:** The Playbook engine ensures configuration drifts are safely managed.
+
+---
+
+<div align="center">
+  <b>Built with ❤️ using Go, Reactivity, and the Model Context Protocol.</b><br>
+  <br>
+  <a href="https://github.com/LuxVTZ/aegis-ssh/issues">Report Bug</a> · 
+  <a href="https://github.com/LuxVTZ/aegis-ssh/pulls">Request Feature</a>
+</div>
