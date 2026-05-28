@@ -94,16 +94,16 @@ aegis-ssh web --port 8080
 
 ```mermaid
 graph TD
-    AI[AI Assistant <br/> Claude/Cursor] <-->|JSON-RPC via stdio| NPM[NPM Wrapper <br/> npx aegis-ssh-mcp]
-    NPM <-->|Spawns & Proxies| Core[Aegis Go Binary]
+    AI["AI Assistant (Claude/Cursor)"] <-->|"JSON-RPC via stdio"| NPM["NPM Wrapper (npx aegis-ssh-mcp)"]
+    NPM <-->|"Spawns & Proxies"| Core["Aegis Go Binary"]
     
-    subgraph Aegis SSH Platform
-        Core --> Tools[MCP Tools]
-        Core --> DB[(SQLite Audit Log)]
-        Core --> Web[Embedded Web Dashboard]
+    subgraph Aegis Platform
+        Core --> Tools["MCP Tools"]
+        Core --> DB[("SQLite Audit Log")]
+        Core --> Web["Embedded Web Dashboard"]
     end
     
-    Tools -->|SSH / SFTP / Tunnels| Fleet[VPS Server Fleet]
+    Tools -->|"SSH / SFTP / Tunnels"| Fleet["VPS Server Fleet"]
 ```
 
 ---
