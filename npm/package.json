@@ -1,0 +1,27 @@
+{
+  "name": "aegis-ssh-mcp",
+  "version": "1.0.0",
+  "description": "Zero-Install Interactive Setup for Aegis SSH MCP Server",
+  "main": "bin/aegis.js",
+  "bin": {
+    "aegis-ssh-mcp": "bin/aegis.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuxVTZ/aegis-ssh.git"
+  },
+  "keywords": [
+    "mcp",
+    "ssh",
+    "aegis"
+  ],
+  "author": "LuxVTZ",
+  "license": "MIT",
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "picocolors": "^1.0.0"
+  }
+}

@@ -1,0 +1,21 @@
+# Binaries
+bin/
+aegis-ssh
+*.exe
+
+# Go workspace
+*.test
+*.out
+
+# NPM
+npm/node_modules/
+npm/package-lock.json
+
+# IDE
+.vscode/
+.idea/
+
+# Local configuration
+.aegis_skills.md
+machines.json
+audit.db
